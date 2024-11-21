@@ -1,0 +1,61 @@
+*&---------------------------------------------------------------------*
+* Projecto          : S/4 ALL                                          *
+* Requerimiento N°. : FI-044                                           *
+* Programa          : ZFICORE_RCOSTOS_INDIRECTOS                       *
+* Creado por        : Ma. de Lourdes Raña Gómez                        *
+* Fecha creación    : 22/11/2018                                       *
+* Descripcion       : Reporte de Costos Indirectos                     *
+* Transporte        : S4DK902353                                       *
+* ---------------------------------------------------------------------*
+* LOG DE MODIFICACIÓN                                                  *
+*----------------------------------------------------------------------*
+* Modificado por    : Juan Jesus Gonzalez Bermudez JGONZALEZ           *
+* Requirimiento N°  : FI-044                                           *
+* ID modificación   :                                                  *
+* Fecha             : 12/04/2019                                       *
+* Descripción       : Reporte de Costos Indirectos                     *
+* Transporte        :  S4DK904730                                      *
+*&---------------------------------------------------------------------*
+REPORT zficore_rcostos_indirectos.
+
+INCLUDE: zficoin_costos_indirectos_top,
+         zficoin_costos_indirectos_f01.
+
+INITIALIZATION.
+
+  PERFORM f0050_obtener_tvarvs.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_kokrs-low.
+  PERFORM f0060_llenar_matchcode_kokrs CHANGING so_kokrs-low.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_kokrs-high.
+  PERFORM f0060_llenar_matchcode_kokrs CHANGING so_kokrs-high.
+
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_auart-low.
+  PERFORM f0060_llenar_matchcode_auart CHANGING so_auart-low.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_auart-high.
+  PERFORM f0060_llenar_matchcode_auart CHANGING so_auart-high.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_waers-low.
+  PERFORM f0060_llenar_matchcode_waers CHANGING so_waers-low.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_waers-high.
+  PERFORM f0060_llenar_matchcode_waers CHANGING so_waers-high.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_khinr-low.
+  PERFORM f0060_llenar_matchcode_khinr CHANGING so_khinr-low.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_khinr-high.
+  PERFORM f0060_llenar_matchcode_khinr CHANGING so_khinr-high.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_rbukr-low.
+  PERFORM f0060_llenar_matchcode_bukrs CHANGING so_rbukr-low.
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR so_rbukr-high.
+  PERFORM f0060_llenar_matchcode_bukrs CHANGING so_rbukr-high.
+
+START-OF-SELECTION.
+
+  PERFORM f0100_obtener_datos.

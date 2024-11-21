@@ -1,0 +1,23 @@
+001	Grupos de órdenes internas
+002	Grupos de Centros de Costo
+003	Sociedad
+004	Grupo de Sociedad CO
+005	Moneda
+C01	Descripción de la Sociedad
+C02	Descripción Cuenta Contable
+C03	CONCEPTO-Descripción de OI
+C04	Descripción de CECO
+E01	No se encontró variable TVARV
+E02	No se ha podido desplegar el reporte
+E03	No se encontraron datos
+
+P_GJAHR	Ejercicio
+SO_AUART	Grupos de Ordenes Internas
+SO_AUFNR	Orden Interna
+SO_BELNR	Documento
+SO_KHINR	Grupo de Centros de Costo
+SO_KOKRS	Sociedad CO
+SO_POPER	Periodo
+SO_RBUKR	Sociedad FI
+SO_RCNTR	Centro de Costo
+SO_WAERS	Moneda

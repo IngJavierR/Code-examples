@@ -1,0 +1,117 @@
+*&---------------------------------------------------------------------*
+* Projecto          : S/4 ALL                                          *
+* Requerimiento N°. : FI-044                                           *
+* Programa          : ZFICOIN_COSTOS_INDIRECTOS_TOP                    *
+* Creado por        : Ma. de Lourdes Raña Gómez                        *
+* Fecha creación    : 22/11/2018                                       *
+* Descripcion       : Declaraciones globales de Reporte de             *
+*                     Costos Indirectos                                *
+* Transporte        : S4DK902353                                       *
+* ---------------------------------------------------------------------*
+* LOG DE MODIFICACIÓN                                                  *
+*----------------------------------------------------------------------*
+* Modificado por    :                                                  *
+* Requirimiento N°  :                                                  *
+* ID modificación   :                                                  *
+* Fecha             :                                                  *
+* Descripción       :                                                  *
+* Transporte        :                                                  *
+*&---------------------------------------------------------------------*
+*** Tables ***
+TABLES: t001,
+        acdoca,
+        coas,
+        rgsbm,
+        tka02,
+        tka01.
+
+***Constantes***
+CONSTANTS: c_0000    TYPE c LENGTH 4 VALUE '0000',
+           c_bt      TYPE c LENGTH 2 VALUE 'BT',
+           c_corp    TYPE c LENGTH 4 VALUE 'CORP',
+           c_e       TYPE c          VALUE 'E',
+           c_eq      TYPE c LENGTH 2 VALUE 'EQ',
+           c_gcec    TYPE setclass   VALUE '0101',
+           c_i       TYPE c          VALUE 'I',
+           c_ind_cc  TYPE rvari_vnam VALUE 'IND_CC',
+           c_ind_ce  TYPE rvari_vnam VALUE 'IND_CE',
+           c_ind_gcc TYPE rvari_vnam VALUE 'IND_GCC',
+           c_ind_goi TYPE rvari_vnam VALUE 'IND_GOI',
+           c_ind_oi  TYPE rvari_vnam VALUE 'IND_OI',
+           c_ind_ko  TYPE rvari_vnam VALUE 'IND_KO',
+           c_rldnr   TYPE rldnr      VALUE '0L',
+           c_s       TYPE c          VALUE 'S',
+           c_struct  TYPE dd02l-tabname VALUE 'ZFICOES_REP_COSTOS_INDIRECTOS',
+           c_x       TYPE c          VALUE 'X',
+           c_zcostos TYPE c LENGTH 8 VALUE 'ZCOSTOS_'.
+
+***Tipos***
+TYPES: BEGIN OF ty_auart,
+         auart TYPE auart,
+       END OF ty_auart,
+
+       BEGIN OF ty_kokrs,
+         kokrs TYPE kokrs,
+       END OF ty_kokrs,
+
+       BEGIN OF ty_khinr,
+         khinr TYPE khinr,
+       END OF ty_khinr,
+       BEGIN OF ty_waers,
+         waers TYPE waers,
+       END OF ty_waers,
+
+       BEGIN OF ty_acdoca,
+         rbukrs TYPE bukrs,
+         gjahr  TYPE gjahr,
+         belnr  TYPE belnr_d,
+         racct  TYPE racct,
+         rcntr  TYPE kostl,
+         rassc  TYPE rassc,
+         hsl    TYPE fins_vtcur12,
+         rtcur  TYPE acdoca-rtcur,
+         poper  TYPE poper,
+         budat  TYPE budat,
+         blart  TYPE blart,
+         aufnr  TYPE aufnr,
+         auart  TYPE auart,
+         ktext  TYPE auftext,
+       END OF ty_acdoca,
+       BEGIN OF ty_t001,
+         bukrs TYPE bukrs,
+         butxt TYPE butxt,
+       END OF ty_t001,
+       BEGIN OF ty_t880,
+         rcomp TYPE rcomp_d,
+         name1 TYPE name_1,
+       END OF ty_t880.
+
+TYPES: tt_acdoca TYPE STANDARD TABLE OF ty_acdoca,
+       tt_t001   TYPE STANDARD TABLE OF ty_t001,
+       tt_ceco   TYPE RANGE OF kostl,
+       tt_racct  TYPE RANGE OF racct,
+       tt_t880   TYPE STANDARD TABLE OF ty_t880.
+
+***Tablas internas***
+DATA: tg_ind_cc  TYPE RANGE OF kosar,
+      tg_ind_ce  TYPE RANGE OF setnamenew,
+      tg_ind_gcc TYPE RANGE OF setnamenew,
+      tg_ind_goi TYPE RANGE OF auart,
+      tg_ind_oi  TYPE RANGE OF auart,
+      tg_ind_ko  TYPE RANGE OF kokrs,
+      tg_kokrs   TYPE RANGE OF kokrs WITH HEADER LINE,
+      tg_final   TYPE STANDARD TABLE OF zficoes_rep_costos_indirectos.
+***Pantalla de Selección***
+* INI FI-044. --------------------------------------- JGONZALEZ 2019.04.12
+*PARAMETERS: p_kokrs TYPE kokrs OBLIGATORY DEFAULT 'MXCO'.
+SELECT-OPTIONS: so_kokrs FOR tka02-kokrs OBLIGATORY  .
+* FIN FI-044. --------------------------------------- JGONZALEZ 2019.04.12
+SELECT-OPTIONS: so_rbukr FOR t001-bukrs.
+PARAMETERS: p_gjahr TYPE gjahr OBLIGATORY DEFAULT sy-datum(4).
+SELECT-OPTIONS: so_poper FOR acdoca-poper OBLIGATORY,
+                so_waers FOR tka01-waers,
+                so_belnr FOR acdoca-belnr NO-EXTENSION NO INTERVALS,
+                so_aufnr FOR acdoca-aufnr NO-EXTENSION NO INTERVALS,
+                so_auart FOR coas-auart,
+                so_rcntr FOR acdoca-rcntr,
+                so_khinr FOR rgsbm-shortname.
