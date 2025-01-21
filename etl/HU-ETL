@@ -1,0 +1,73 @@
+Historia de Usuario: Construcción de un ETL para Tweets
+ 
+ID: HU-002
+Título: Implementar un proceso ETL para extraer tweets de una empresa y almacenarlos en una tabla
+ 
+Como
+Un analista de datos o responsable de inteligencia de negocio,
+ 
+Quiero
+Contar con un proceso automatizado que extraiga, transforme y cargue los tweets de una empresa,
+ 
+Para
+Poder analizar el contenido y las métricas asociadas para la toma de decisiones estratégicas.
+ 
+Criterios de Aceptación
+ 
+Extracción:
+ 
+El ETL debe conectarse a la API de Twitter (o cualquier fuente de datos que proporcione los tweets) utilizando las credenciales de la empresa.
+Permitir configurar filtros como:
+Rango de fechas de los tweets.
+Hashtags, menciones o palabras clave específicas.
+Extraer información clave de los tweets, como:
+Texto del tweet.
+Fecha y hora de publicación.
+Nombre de usuario y handle de Twitter.
+Número de likes, retweets y respuestas.
+URL del tweet.
+ 
+Transformación:
+ 
+Limpiar los datos eliminando caracteres especiales y URLs irrelevantes del texto.
+Normalizar la estructura de los datos (por ejemplo, transformar las fechas a un formato estándar).
+Enriquecer los datos calculando métricas adicionales como:
+Sentimiento del tweet (usando análisis de sentimiento).
+Clasificación de tipo de contenido (positivo, negativo, neutral).
+ 
+Carga:
+ 
+Los datos deben ser almacenados en una tabla de base de datos en un formato estructurado.
+La tabla debe incluir columnas como:
+ID del tweet.
+Texto.
+Fecha y hora de publicación.
+Nombre del usuario.
+Métricas asociadas (likes, retweets, respuestas).
+Clasificación de sentimiento.
+Garantizar la idempotencia del proceso para evitar duplicados.
+ 
+Automatización:
+ 
+El proceso debe ejecutarse automáticamente en intervalos definidos (diario, semanal o según se configure).
+Proveer logs de ejecución para rastrear el estado del ETL (éxito o fallos).
+ 
+Seguridad:
+ 
+Garantizar la protección de las credenciales de la API de Twitter.
+Asegurar la integridad de los datos transferidos y almacenados.
+Notas Técnicas
+ 
+Tecnologías recomendadas:
+Herramientas de ETL un script personalizado en Python.
+Conexión a la API de Twitter usando Tweepy (Python).
+Base de datos de destino como PostgreSQL.
+ 
+Escalabilidad:
+Diseñar el proceso para manejar grandes volúmenes de datos en caso de tweets frecuentes.
+ 
+Enriquecimiento opcional:
+Incorporar datos externos, como ubicación geográfica o estadísticas de perfiles.
+ 
+Genera el codigo mermaid para diagramar el comportamiento del siguiente ETL
+ 
