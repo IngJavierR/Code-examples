@@ -69,5 +69,4 @@ Diseñar el proceso para manejar grandes volúmenes de datos en caso de tweets f
 Enriquecimiento opcional:
 Incorporar datos externos, como ubicación geográfica o estadísticas de perfiles.
  
-Genera el codigo mermaid para diagramar el comportamiento del siguiente ETL
  
